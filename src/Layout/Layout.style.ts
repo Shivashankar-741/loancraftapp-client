@@ -1,4 +1,4 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -7,22 +7,40 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
     },
+    linkTag: {
+      textDecoration: 'none',
+      color: '#D8DAE5',
+
+      '&:hover': {
+        color: '#52BD94',
+      },
+    },
+
+    linkIcon: {
+      color: '#D8DAE5',
+
+      '&:hover': {
+        color: '#52BD94',
+      },
+    },
     appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
     },
     appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+      // backgroundColor: '#101840',
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginRight: 36,
     },
     hide: {
       display: 'none',
@@ -30,33 +48,39 @@ export const useStyles = makeStyles((theme: Theme) =>
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      whiteSpace: 'nowrap',
     },
-    drawerPaper: {
+    drawerOpen: {
       width: drawerWidth,
+      backgroundColor: '#101840',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
-    drawerHeader: {
+    drawerClose: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      backgroundColor: '#101840',
+      overflowX: 'hidden',
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9) + 1,
+      },
+    },
+    toolbar: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
     },
   })
 );

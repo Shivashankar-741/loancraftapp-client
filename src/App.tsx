@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
 import Layout from './Layout/Layout';
 
 const App = () => {
   return (
     <div className="App">
-      <Layout />
+      <BrowserRouter>
+        <Suspense fallback={<h2>loading...</h2>}>
+          <Layout />
+        </Suspense>
+      </BrowserRouter>
     </div>
   );
 };
