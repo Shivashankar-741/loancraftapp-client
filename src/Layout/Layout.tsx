@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,8 +20,16 @@ import MailIcon from '@material-ui/icons/Mail';
 import { useStyles } from './Layout.style';
 import { Route, Switch, Link } from 'react-router-dom';
 import { routePages } from '../Pages';
+import {
+  DashboardSVG,
+  InprogressSVG,
+  NewloanSVG,
+  CompletedSVG,
+  PayinterestSVG,
+  InteresthistorySVG,
+} from '../icons';
 
-const Layout = () => {
+const Layout = (): ReactElement => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -37,7 +45,7 @@ const Layout = () => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -84,15 +92,15 @@ const Layout = () => {
           <Link to="/dashboard" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <MailIcon className={classes.linkIcon} />
+                <DashboardSVG />
               </ListItemIcon>
-              <ListItemText>Dashboard</ListItemText>
+              <ListItemText className={classes.linkRoute}>Dashboard</ListItemText>
             </ListItem>
           </Link>
           <Link to="/newloan" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <NewloanSVG />
               </ListItemIcon>
               <ListItemText>New Loan</ListItemText>
             </ListItem>
@@ -100,7 +108,7 @@ const Layout = () => {
           <Link to="/inprogress" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <MailIcon />
+                <InprogressSVG />
               </ListItemIcon>
               <ListItemText>In Progress</ListItemText>
             </ListItem>
@@ -108,7 +116,7 @@ const Layout = () => {
           <Link to="/completed" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <CompletedSVG />
               </ListItemIcon>
               <ListItemText>Completed</ListItemText>
             </ListItem>
@@ -116,7 +124,7 @@ const Layout = () => {
           <Link to="/payinterest" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <PayinterestSVG />
               </ListItemIcon>
               <ListItemText>Pay Interest</ListItemText>
             </ListItem>
@@ -124,7 +132,7 @@ const Layout = () => {
           <Link to="/interesthistory" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <InteresthistorySVG />
               </ListItemIcon>
               <ListItemText>Interest History</ListItemText>
             </ListItem>

@@ -6,11 +6,11 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      fontFamily: 'Gilroy',
     },
     linkTag: {
       textDecoration: 'none',
       color: '#D8DAE5',
-
       '&:hover': {
         color: '#52BD94',
       },
@@ -23,12 +23,23 @@ export const useStyles = makeStyles((theme: Theme) =>
         color: '#52BD94',
       },
     },
+    linkRoute: {
+      // '& .MuiTypography-root': {
+      //   fontFamily: 'Gilroy',
+      // },
+      // '& .MuiTypography-displayBlock': {
+      //   fontFamily: 'Gilroy',
+      // },
+    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      // backgroundColor: '#101840',
+      backgroundColor: 'rgba(255, 255, 255, 0.12)',
+      // backdropFilter: ' blur(12px)',
     },
     appBarShift: {
       marginLeft: drawerWidth,
