@@ -8,11 +8,24 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       fontFamily: 'Gilroy',
     },
+
     linkTag: {
       textDecoration: 'none',
       color: '#D8DAE5',
+
       '&:hover': {
         color: '#52BD94',
+      },
+
+      '& .MuiButtonBase-root': {
+        margin: '15px 0',
+        '&:hover': {
+          borderLeft: '3px solid #52BD94',
+          transition: ' borderLeft 3s',
+        },
+      },
+      '& .MuiListItem-gutters': {
+        PaddingLeft: '0px',
       },
     },
 
@@ -24,12 +37,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     linkRoute: {
-      // '& .MuiTypography-root': {
-      //   fontFamily: 'Gilroy',
-      // },
-      // '& .MuiTypography-displayBlock': {
-      //   fontFamily: 'Gilroy',
-      // },
+      '& .MuiTypography-root': {
+        fontFamily: 'Gilroy',
+        fontWeight: '600',
+        fontSize: '16px',
+      },
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -84,8 +96,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     toolbar: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: theme.spacing(0, 1),
+      justifyContent: 'space-between',
+      padding: theme.spacing(2, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },

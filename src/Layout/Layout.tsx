@@ -27,6 +27,9 @@ import {
   CompletedSVG,
   PayinterestSVG,
   InteresthistorySVG,
+  LogoSVG,
+  CollapseLeftSVG,
+  CollapseRightSVG,
 } from '../icons';
 
 const Layout = (): ReactElement => {
@@ -62,7 +65,7 @@ const Layout = (): ReactElement => {
               [classes.hide]: open,
             })}
           >
-            <MenuIcon />
+            <CollapseLeftSVG />
           </IconButton>
           <Typography variant="h6" noWrap>
             LoanCraft
@@ -83,11 +86,13 @@ const Layout = (): ReactElement => {
         }}
       >
         <div className={classes.toolbar}>
+          <div>
+            <LogoSVG />
+          </div>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <CollapseRightSVG /> : <CollapseRightSVG />}
           </IconButton>
         </div>
-        <Divider />
         <List>
           <Link to="/dashboard" className={classes.linkTag}>
             <ListItem button>
@@ -102,7 +107,7 @@ const Layout = (): ReactElement => {
               <ListItemIcon>
                 <NewloanSVG />
               </ListItemIcon>
-              <ListItemText>New Loan</ListItemText>
+              <ListItemText className={classes.linkRoute}>New Loan</ListItemText>
             </ListItem>
           </Link>
           <Link to="/inprogress" className={classes.linkTag}>
@@ -110,7 +115,7 @@ const Layout = (): ReactElement => {
               <ListItemIcon>
                 <InprogressSVG />
               </ListItemIcon>
-              <ListItemText>In Progress</ListItemText>
+              <ListItemText className={classes.linkRoute}>In Progress</ListItemText>
             </ListItem>
           </Link>
           <Link to="/completed" className={classes.linkTag}>
@@ -118,7 +123,7 @@ const Layout = (): ReactElement => {
               <ListItemIcon>
                 <CompletedSVG />
               </ListItemIcon>
-              <ListItemText>Completed</ListItemText>
+              <ListItemText className={classes.linkRoute}>Completed</ListItemText>
             </ListItem>
           </Link>
           <Link to="/payinterest" className={classes.linkTag}>
@@ -126,7 +131,7 @@ const Layout = (): ReactElement => {
               <ListItemIcon>
                 <PayinterestSVG />
               </ListItemIcon>
-              <ListItemText>Pay Interest</ListItemText>
+              <ListItemText className={classes.linkRoute}>Pay Interest</ListItemText>
             </ListItem>
           </Link>
           <Link to="/interesthistory" className={classes.linkTag}>
@@ -134,7 +139,7 @@ const Layout = (): ReactElement => {
               <ListItemIcon>
                 <InteresthistorySVG />
               </ListItemIcon>
-              <ListItemText>Interest History</ListItemText>
+              <ListItemText className={classes.linkRoute}>Interest History</ListItemText>
             </ListItem>
           </Link>
         </List>
