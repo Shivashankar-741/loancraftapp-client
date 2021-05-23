@@ -49,9 +49,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      // backgroundColor: '#101840',
       backgroundColor: 'rgba(255, 255, 255, 0.12)',
-      // backdropFilter: ' blur(12px)',
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -63,7 +61,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       // backgroundColor: '#101840',
     },
     menuButton: {
-      marginRight: 36,
+      marginRIght: 36,
+      position: 'absolute',
+      left: '60px',
+      top: '20px',
     },
     hide: {
       display: 'none',

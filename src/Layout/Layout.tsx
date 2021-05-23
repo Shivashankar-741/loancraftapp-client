@@ -23,7 +23,9 @@ import {
   LogoSVG,
   CollapseLeftSVG,
   CollapseRightSVG,
+  AvatarSVG,
 } from '../icons';
+import { CssBaseline } from '@material-ui/core';
 
 const Layout = (): ReactElement => {
   const classes = useStyles();
@@ -60,9 +62,12 @@ const Layout = (): ReactElement => {
           >
             <CollapseLeftSVG />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            LoanCraft
-          </Typography>
+          {/* <Typography variant="h6" noWrap>
+            Mini variant drawer
+          </Typography> */}
+          {/* <div>
+            <AvatarSVG />
+          </div> */}
         </Toolbar>
       </AppBar>
       <Drawer
