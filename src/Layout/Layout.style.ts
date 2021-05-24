@@ -24,9 +24,9 @@ export const useStyles = makeStyles((theme: Theme) =>
           transition: ' borderLeft 3s',
         },
       },
-      '& .MuiListItem-gutters': {
-        PaddingLeft: '0px',
-      },
+      // '& .MuiListItem-gutters': {
+      //   PaddingLeft: '0px',
+      // },
     },
 
     linkIcon: {
@@ -50,6 +50,8 @@ export const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       backgroundColor: 'rgba(255, 255, 255, 0.12)',
+      filter: 'drop-shadow(0px 4px 12px rgba(16, 24, 64, 0.04))',
+      borderRadius: '8px',
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -62,10 +64,11 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRIght: 36,
-      position: 'absolute',
-      left: '60px',
-      top: '20px',
+      // position: 'absolute',
+      // left: '60px',
+      // top: '20px',
     },
+
     hide: {
       display: 'none',
     },
@@ -105,6 +108,12 @@ export const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+    },
+
+    avatar: {
+      position: 'absolute',
+      right: '0',
+      marginRight: '10px',
     },
   })
 );

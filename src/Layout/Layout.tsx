@@ -43,8 +43,9 @@ const Layout = (): ReactElement => {
 
   return (
     <div className={classes.root}>
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <AppBar
+        elevation={0}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -62,12 +63,9 @@ const Layout = (): ReactElement => {
           >
             <CollapseLeftSVG />
           </IconButton>
-          {/* <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography> */}
-          {/* <div>
+          <IconButton className={classes.avatar}>
             <AvatarSVG />
-          </div> */}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -92,7 +90,7 @@ const Layout = (): ReactElement => {
           </IconButton>
         </div>
         <List>
-          <Link to="/dashboard" className={classes.linkTag}>
+          <Link to="/" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
                 <DashboardSVG />
@@ -144,11 +142,13 @@ const Layout = (): ReactElement => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Switch>
-          {routePages.map((route) => (
-            <Route key={route.path} path={route.path} component={route.component} exact />
-          ))}
-        </Switch>
+        <div>
+          <Switch>
+            {routePages.map((route) => (
+              <Route key={route.path} path={route.path} component={route.component} exact />
+            ))}
+          </Switch>
+        </div>
       </main>
     </div>
   );

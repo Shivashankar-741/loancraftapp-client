@@ -13,7 +13,7 @@ const Dashboard = (): ReactElement => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <AppBar className={classes.appbar} position="static" color="inherit">
+      <AppBar className={classes.appbar} elevation={0} position="static" color="inherit">
         <h1 className={classes.heading}>Overview</h1>
       </AppBar>
       <Grid container spacing={2} className={classes.containerOne}>
