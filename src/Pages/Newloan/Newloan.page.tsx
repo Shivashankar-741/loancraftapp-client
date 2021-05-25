@@ -1,17 +1,18 @@
-import React from 'react';
-import { AppBar, Grid, FormControl, InputLabel, OutlinedInput, TextField } from '@material-ui/core';
+import React, { ReactElement } from 'react';
+import {
+  AppBar,
+  Grid,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+  Button,
+} from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
 
-const Newloan = () => {
+const Newloan = (): ReactElement => {
   const classes = useStyles();
 
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
-    new Date('2014-08-18T21:11:54')
-  );
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
   return (
     <div className={classes.container}>
       <AppBar className={classes.appbar} elevation={0} position="static" color="inherit">
@@ -150,6 +151,14 @@ const Newloan = () => {
           </FormControl>
         </Grid>
       </Grid>
+      <div className={classes.buttons}>
+        <Button className={classes.button} variant="contained">
+          Submit
+        </Button>
+        <Button className={classes.button} variant="contained">
+          Reset
+        </Button>
+      </div>
     </div>
   );
 };
