@@ -62,6 +62,7 @@ const Layout = (): ReactElement => {
           >
             <CollapseLeftSVG />
           </IconButton>
+          <h1 className={classes.heading}>LoanCraft</h1>
           <IconButton className={classes.avatar}>
             <AvatarSVG />
           </IconButton>

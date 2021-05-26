@@ -6,5 +6,8 @@ export const routePages = [
   { path: '/inprogress', component: lazy(() => import('./Inprogress/Inprogress.page')) },
   { path: '/completed', component: lazy(() => import('./Completed/Completed.page')) },
   { path: '/payinterest', component: lazy(() => import('./Payinterest/Payinterest.page')) },
-  { path: '/interesthistory', component: lazy(() => import('./Interesthistory/interesthistory.page')) },
+  {
+    path: '/interesthistory',
+    component: lazy(() => import('./Interesthistory/Interesthistory.page')),
+  },
 ];

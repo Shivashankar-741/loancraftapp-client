@@ -115,5 +115,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       right: '0',
       marginRight: '10px',
     },
+
+    heading: {
+      fontSize: '30px',
+      fontFamily: 'Gilroy',
+      color: '#101840',
+      marginLeft: '30px',
+      fontWeight: 'bold',
+    },
   })
 );

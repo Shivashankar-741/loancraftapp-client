@@ -14,7 +14,7 @@ const Dashboard = (): ReactElement => {
   return (
     <div className={classes.container}>
       <AppBar className={classes.appbar} elevation={0} position="static" color="inherit">
-        <h1 className={classes.heading}>Overview</h1>
+        <h1 className={classes.heading}>Overview Of LoanCraft</h1>
       </AppBar>
       <Grid container spacing={2} className={classes.containerOne}>
         <Grid item xs={12} sm={4} md={4}>
