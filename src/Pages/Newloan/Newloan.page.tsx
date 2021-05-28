@@ -1,14 +1,44 @@
-import React, { ReactElement } from 'react';
-import {
-  AppBar,
-  Grid,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-  Button,
-} from '@material-ui/core';
+import React, { ReactElement, useState } from 'react';
+import { AppBar, Grid, TextField, Button } from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const validationSchema = yup.object({
+  firstName: yup
+    .string()
+    .max(18, 'first name should be less than 18 characters length')
+    .required('First name is required'),
+  lastName: yup
+    .string()
+    .max(15, 'second name should be less than 15 characters length')
+    .required('Last name is required'),
+  mobileNumber: yup
+    .string()
+    .required('Mobile number required')
+    .matches(phoneRegExp, 'Mobile number is not valid')
+    .min(10, 'to short')
+    .max(10, 'to long'),
+  alternativeMobileNumber: yup
+    .string()
+    .required('Alternative mobile number required')
+    .matches(phoneRegExp, 'Alternative mobile number is not valid')
+    .min(10, 'to short')
+    .max(10, 'to long'),
+  address: yup
+    .string()
+    .required('Address is  required')
+    .max(80, 'Address name should be less than 80 characters length'),
+  notes: yup
+    .string()
+    .required('Notes is  required')
+    .max(120, 'Address name should be less than 120 characters length'),
+  date: yup.string().required('Date is required'),
+  amount: yup.string().required('Amount is required'),
+});
 
 const Newloan = (): ReactElement => {
   const classes = useStyles();
@@ -18,153 +48,192 @@ const Newloan = (): ReactElement => {
     '0' + MyDate.getDate()
   ).slice(-2)}`;
 
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      mobileNumber: '',
+      alternativeMobileNumber: '',
+      address: '',
+      date: new Date(),
+      amount: 0,
+      notes: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      alert(JSON.stringify({ ...values, date: new Date() }, null, 2));
+    },
+  });
+
   return (
     <div className={classes.container}>
       <AppBar className={classes.appbar} elevation={0} position="static" color="inherit">
         <h1 className={classes.heading}>New loan</h1>
       </AppBar>
-      <Grid container spacing={4} className={classes.gridContainer}>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Name
-            </InputLabel>
-            <OutlinedInput
+      <form onSubmit={formik.handleSubmit}>
+        <Grid container spacing={4} className={classes.gridContainer}>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
+              name="firstName"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="First Name"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.firstName}
+              error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+              helperText={formik.touched.firstName && formik.errors.firstName}
             />
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              parent Name
-            </InputLabel>
-            <OutlinedInput
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
+              name="lastName"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Last Name"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.lastName}
+              error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+              helperText={formik.touched.lastName && formik.errors.lastName}
             />
-          </FormControl>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className={classes.gridContainer} spacing={4}>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Mobile No
-            </InputLabel>
-            <OutlinedInput
+        <Grid container className={classes.gridContainer} spacing={4}>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
+              name="mobileNumber"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Mobile Number"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.mobileNumber}
+              error={formik.touched.mobileNumber && Boolean(formik.errors.mobileNumber)}
+              helperText={formik.touched.mobileNumber && formik.errors.mobileNumber}
             />
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Alternative Mobile No
-            </InputLabel>
-            <OutlinedInput
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
+              name="alternativeMobileNumber"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Alternative Mobile Number"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.alternativeMobileNumber}
+              error={
+                formik.touched.alternativeMobileNumber &&
+                Boolean(formik.errors.alternativeMobileNumber)
+              }
+              helperText={
+                formik.touched.alternativeMobileNumber && formik.errors.alternativeMobileNumber
+              }
             />
-          </FormControl>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className={classes.gridContainer} spacing={4}>
-        <Grid item xs={12}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Address
-            </InputLabel>
-            <OutlinedInput
+        <Grid container className={classes.gridContainer} spacing={4}>
+          <Grid item xs={12}>
+            <TextField
+              name="address"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Address"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.address}
+              error={formik.touched.address && Boolean(formik.errors.address)}
+              helperText={formik.touched.address && formik.errors.address}
             />
-          </FormControl>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className={classes.gridContainer} spacing={4}>
-        <Grid item xs={12} sm={12} md={6}>
-          <TextField
-            className={classes.outline}
-            fullWidth
-            id="date"
-            label="Select today Date"
-            type="date"
-            defaultValue={MyDateString}
-            // defaultValue="2017-05-04"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Amount
-            </InputLabel>
-            <OutlinedInput
+        <Grid container className={classes.gridContainer} spacing={4}>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              onChange={formik.handleChange}
+              name="date"
+              fullWidth
+              id="date"
+              label="Select today Date"
+              type="date"
+              defaultValue={MyDateString}
+              // defaultValue="2017-05-04"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // value={MyDateString}
+              value={formik.values.date}
+              error={formik.touched.date && Boolean(formik.errors.date)}
+              helperText={formik.touched.date && formik.errors.date}
             />
-          </FormControl>
-        </Grid>
-      </Grid>
-      <Grid container className={classes.gridContainer} spacing={4}>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Interest
-            </InputLabel>
-            <OutlinedInput
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TextField
+              name="amount"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Amount"
+              type="number"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.amount}
+              error={formik.touched.amount && Boolean(formik.errors.amount)}
+              helperText={formik.touched.amount && formik.errors.amount}
             />
-          </FormControl>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Interest Paid
-            </InputLabel>
-            <OutlinedInput
+
+        <Grid container className={classes.gridContainer} spacing={4}>
+          <Grid item xs={12}>
+            <TextField
+              name="notes"
+              onChange={formik.handleChange}
+              variant="outlined"
+              required
+              fullWidth
+              label="Notes"
+              type="text"
               className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
+              value={formik.values.notes}
+              error={formik.touched.notes && Boolean(formik.errors.notes)}
+              helperText={formik.touched.notes && formik.errors.notes}
             />
-          </FormControl>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className={classes.gridContainer} spacing={4}>
-        <Grid item xs={12}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel className={classes.outline} htmlFor="outlined-adornment-amount">
-              Notes
-            </InputLabel>
-            <OutlinedInput
-              className={classes.outline}
-              id="outlined-adornment-amount"
-              labelWidth={60}
-            />
-          </FormControl>
-        </Grid>
-      </Grid>
-      <div className={classes.buttons}>
-        <Button className={classes.button} variant="contained">
+        <div className={classes.buttons}>
+          <Button className={classes.button} variant="contained" type="submit">
+            Submit
+          </Button>
+          <Button
+            onClick={() => formik.initialValues}
+            className={classes.button}
+            variant="contained"
+          >
+            Reset
+          </Button>
+        </div>
+      </form>
+      {/* <div className={classes.buttons}>
+        <Button onClick={submitLoanData} className={classes.button} variant="contained">
           Submit
         </Button>
-        <Button className={classes.button} variant="contained">
+        <Button onClick={clearLoanData} className={classes.button} variant="contained">
           Reset
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
