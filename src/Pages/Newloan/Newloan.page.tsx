@@ -12,6 +12,11 @@ import { useStyles } from './Newloan.styles';
 
 const Newloan = (): ReactElement => {
   const classes = useStyles();
+  let MyDate = new Date();
+
+  let MyDateString = `${MyDate.getFullYear()}-${('0' + (MyDate.getMonth() + 1)).slice(-2)}-${(
+    '0' + MyDate.getDate()
+  ).slice(-2)}`;
 
   return (
     <div className={classes.container}>
@@ -90,9 +95,10 @@ const Newloan = (): ReactElement => {
             className={classes.outline}
             fullWidth
             id="date"
-            label="Date"
+            label="Select today Date"
             type="date"
-            defaultValue="2017-05-24"
+            defaultValue={MyDateString}
+            // defaultValue="2017-05-04"
             InputLabelProps={{
               shrink: true,
             }}

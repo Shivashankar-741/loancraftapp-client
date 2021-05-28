@@ -16,3 +16,7 @@ export { TotalLoanAmountSVG } from './TotalLoanAmount.icon';
 
 //Logo
 export { LogoSVG } from './Logo.icon';
+
+//AuthLogo
+export { GoogleIconSVG } from './Google.icon';
+export { FacebookIconSVG } from './Facebook.icon';

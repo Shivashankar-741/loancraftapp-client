@@ -62,9 +62,13 @@ const Layout = (): ReactElement => {
           >
             <CollapseLeftSVG />
           </IconButton>
-          <h1 className={classes.heading}>LoanCraft</h1>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <h1 className={classes.heading}>LoanCraft</h1>
+          </Link>
           <IconButton className={classes.avatar}>
-            <AvatarSVG />
+            <Link to="/auth">
+              <AvatarSVG />
+            </Link>
           </IconButton>
         </Toolbar>
       </AppBar>
