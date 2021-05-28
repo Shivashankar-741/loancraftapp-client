@@ -61,7 +61,6 @@ const Newloan = (): ReactElement => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       alert(JSON.stringify({ ...values, date: new Date() }, null, 2));
     },
   });
