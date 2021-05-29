@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { AppBar, Grid, TextField, Button } from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import axios from 'axios';
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -37,7 +38,7 @@ const validationSchema = yup.object({
     .required('Notes is  required')
     .max(120, 'Address name should be less than 120 characters length'),
   date: yup.string().required('Date is required'),
-  amount: yup.string().required('Amount is required'),
+  amount: yup.string().required('Amount is required').min(4, 'Amount should be more than 1000'),
 });
 
 const Newloan = (): ReactElement => {
@@ -61,7 +62,8 @@ const Newloan = (): ReactElement => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify({ ...values, date: new Date() }, null, 2));
+      // alert(JSON.stringify({ ...values, date: new Date().toISOString() }, null, 2));
+      axios.post('http://localhost:4000/loans', { ...values, date: new Date().toISOString() });
     },
   });
 

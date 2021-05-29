@@ -57,8 +57,8 @@ export const LogoSVG = (): ReactElement => (
         y2="14.9399"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#3DCF98" />
-        <stop offset="1" stop-color="#41D09A" />
+        <stop offset="0.01" stopColor="#3DCF98" />
+        <stop offset="1" stopColor="#41D09A" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -68,8 +68,8 @@ export const LogoSVG = (): ReactElement => (
         y2="33.4886"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#6DDDB2" />
-        <stop offset="1" stop-color="#1AC584" />
+        <stop offset="0.01" stopColor="#6DDDB2" />
+        <stop offset="1" stopColor="#1AC584" />
       </linearGradient>
       <linearGradient
         id="paint2_linear"
@@ -79,8 +79,8 @@ export const LogoSVG = (): ReactElement => (
         y2="5608.57"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#42D19B" />
-        <stop offset="1" stop-color="#4FD5A2" />
+        <stop offset="0.01" stopColor="#42D19B" />
+        <stop offset="1" stopColor="#4FD5A2" />
       </linearGradient>
       <linearGradient
         id="paint3_linear"
@@ -90,8 +90,8 @@ export const LogoSVG = (): ReactElement => (
         y2="10.0468"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#6DDDB2" />
-        <stop offset="1" stop-color="#1AC584" />
+        <stop offset="0.01" stopColor="#6DDDB2" />
+        <stop offset="1" stopColor="#1AC584" />
       </linearGradient>
       <linearGradient
         id="paint4_linear"
@@ -101,8 +101,8 @@ export const LogoSVG = (): ReactElement => (
         y2="16.0203"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#6DDDB2" />
-        <stop offset="1" stop-color="#1AC584" />
+        <stop offset="0.01" stopColor="#6DDDB2" />
+        <stop offset="1" stopColor="#1AC584" />
       </linearGradient>
       <linearGradient
         id="paint5_linear"
@@ -112,8 +112,8 @@ export const LogoSVG = (): ReactElement => (
         y2="16.646"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#39D89B" />
-        <stop offset="1" stop-color="#1F8F65" />
+        <stop offset="0.01" stopColor="#39D89B" />
+        <stop offset="1" stopColor="#1F8F65" />
       </linearGradient>
       <linearGradient
         id="paint6_linear"
@@ -123,8 +123,8 @@ export const LogoSVG = (): ReactElement => (
         y2="26.6433"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#39D89B" />
-        <stop offset="1" stop-color="#1F8F65" />
+        <stop offset="0.01" stopColor="#39D89B" />
+        <stop offset="1" stopColor="#1F8F65" />
       </linearGradient>
       <linearGradient
         id="paint7_linear"
@@ -134,8 +134,8 @@ export const LogoSVG = (): ReactElement => (
         y2="39.9134"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#39D89B" />
-        <stop offset="1" stop-color="#1F8F65" />
+        <stop offset="0.01" stopColor="#39D89B" />
+        <stop offset="1" stopColor="#1F8F65" />
       </linearGradient>
       <linearGradient
         id="paint8_linear"
@@ -145,8 +145,8 @@ export const LogoSVG = (): ReactElement => (
         y2="35.4488"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#6DDDB2" />
-        <stop offset="1" stop-color="#1AC584" />
+        <stop offset="0.01" stopColor="#6DDDB2" />
+        <stop offset="1" stopColor="#1AC584" />
       </linearGradient>
       <linearGradient
         id="paint9_linear"
@@ -156,8 +156,8 @@ export const LogoSVG = (): ReactElement => (
         y2="25.4705"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.01" stop-color="#6DDDB2" />
-        <stop offset="1" stop-color="#1AC584" />
+        <stop offset="0.01" stopColor="#6DDDB2" />
+        <stop offset="1" stopColor="#1AC584" />
       </linearGradient>
     </defs>
   </svg>

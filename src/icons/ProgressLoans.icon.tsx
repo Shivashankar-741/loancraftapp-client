@@ -32,8 +32,8 @@ export const ProgressLoansSVG = (): ReactElement => (
         y2="44"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#5659FF" />
-        <stop offset="1" stop-color="#878AFE" />
+        <stop stopColor="#5659FF" />
+        <stop offset="1" stopColor="#878AFE" />
       </linearGradient>
       <linearGradient
         id="paint1_linear"
@@ -43,8 +43,8 @@ export const ProgressLoansSVG = (): ReactElement => (
         y2="31.4113"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#5659FF" />
-        <stop offset="1" stop-color="#878AFE" />
+        <stop stopColor="#5659FF" />
+        <stop offset="1" stopColor="#878AFE" />
       </linearGradient>
       <linearGradient
         id="paint2_linear"
@@ -54,8 +54,8 @@ export const ProgressLoansSVG = (): ReactElement => (
         y2="37.5779"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#5659FF" />
-        <stop offset="1" stop-color="#878AFE" />
+        <stop stopColor="#5659FF" />
+        <stop offset="1" stopColor="#878AFE" />
       </linearGradient>
     </defs>
   </svg>

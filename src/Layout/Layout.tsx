@@ -30,7 +30,6 @@ const Layout = (): ReactElement => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  console.log(routePages);
 
   const handleDrawerOpen = () => {
     setOpen(true);

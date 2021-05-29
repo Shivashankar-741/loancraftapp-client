@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import './InProgress.style.css';
 import { AppBar } from '@material-ui/core';
 import { useStyles } from './Inprogress.style';
+import { useQuery } from 'react-query';
+import { loansAPI } from 'apis';
 
 const rows = [
   {
@@ -21,17 +23,7 @@ const rows = [
     fullDetails: 'details',
     customize: 'customize',
   },
-  {
-    sNo: 2,
-    loanID: 'LID1021',
-    name: 'Karthikeyan',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
+
   {
     sNo: 1,
     loanID: 'LID1020',
@@ -80,6 +72,11 @@ const rows = [
 
 const Inprogress = (): ReactElement => {
   const classes = useStyles();
+  const { data, isLoading, isError } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
+  console.log(data);
+  console.log(isLoading);
+  console.log(isError);
+
   return (
     <div className={classes.bigContainer}>
       <AppBar className={classes.appbar} elevation={0} position="static" color="inherit">

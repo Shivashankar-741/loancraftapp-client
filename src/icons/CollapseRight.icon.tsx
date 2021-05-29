@@ -8,9 +8,9 @@ export const CollapseRightSVG = (): ReactElement => (
       <path
         d="M18 8L14 12L18 16"
         stroke="#B9BCD0"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </g>
     <defs>
@@ -21,9 +21,9 @@ export const CollapseRightSVG = (): ReactElement => (
         width="32"
         height="32"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

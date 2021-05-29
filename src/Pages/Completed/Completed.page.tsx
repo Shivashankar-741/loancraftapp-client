@@ -21,17 +21,6 @@ const rows = [
     fullDetails: 'details',
     customize: 'customize',
   },
-  {
-    sNo: 2,
-    loanID: 'LID1021',
-    name: 'Karthikeyan',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
 ];
 
 const Completed = (): ReactElement => {
