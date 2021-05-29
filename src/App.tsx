@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ const App = () => {
             <Layout />
           </Suspense>
         </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );

@@ -72,10 +72,16 @@ const rows = [
 
 const Inprogress = (): ReactElement => {
   const classes = useStyles();
-  const { data, isLoading, isError } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
-  console.log(data);
+  const {
+    data: fetchLoans,
+    isLoading,
+    isError,
+  } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
+  console.log(fetchLoans);
   console.log(isLoading);
   console.log(isError);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className={classes.bigContainer}>
@@ -98,21 +104,21 @@ const Inprogress = (): ReactElement => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((el) => (
-              <TableRow key={el.sNo}>
+            {fetchLoans.map((el: string | number | any, idx: number) => (
+              <TableRow key={idx + 1}>
                 <TableCell component="th" scope="row">
-                  {el.sNo}
+                  {idx + 1}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {el.loanID}
+                  {idx + 1}
                 </TableCell>
-                <TableCell>{el.name}</TableCell>
+                <TableCell>{el.firstName}</TableCell>
                 <TableCell>{el.date}</TableCell>
-                <TableCell>{el.amount}</TableCell>
+                <TableCell>{el.address}</TableCell>
                 <TableCell>{el.interest}</TableCell>
-                <TableCell>{el.pendingAmount}</TableCell>
-                <TableCell>{el.fullDetails}</TableCell>
-                <TableCell>{el.customize}</TableCell>
+                <TableCell>{el.mobileNumber}</TableCell>
+                <TableCell>{el.amount}</TableCell>
+                <TableCell>{el.notes}</TableCell>
               </TableRow>
             ))}
           </TableBody>
