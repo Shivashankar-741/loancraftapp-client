@@ -1,11 +1,16 @@
 import { Grid, Button, Container, Paper, Typography } from '@material-ui/core';
+import { usersAPI } from 'apis';
 import React, { ReactElement, useState } from 'react';
+import { useMutation } from 'react-query';
 import { FacebookIconSVG, GoogleIconSVG } from '../../icons';
 import { useStyles } from './Auth.style';
 import AuthInput from './AuthInput';
 
 const Auth = (): ReactElement => {
   const classes = useStyles();
+
+  const signinMutation = useMutation(usersAPI.signin);
+  const signupMutation = useMutation(usersAPI.signup);
 
   const initialState = {
     firstName: '',
@@ -25,10 +30,13 @@ const Auth = (): ReactElement => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formData.confirmPassword !== formData.password && isSignup) {
-      alert('please check your password');
+    if (isSignup) {
+      // alert('please check your password');
+      console.log(formData);
+      signupMutation.mutate(formData);
     } else {
       console.log(formData);
+      signinMutation.mutate(formData);
     }
   };
 

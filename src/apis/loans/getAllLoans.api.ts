@@ -1,6 +1,6 @@
-import { API } from '../../api';
+import { API, endPoint } from '../../api';
 
 export const getAllLoans = async () => {
-  const { data } = await API.get('/loans');
+  const { data } = await API.get(endPoint.LOANS);
   return data;
 };

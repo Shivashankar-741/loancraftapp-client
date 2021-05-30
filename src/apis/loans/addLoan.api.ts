@@ -1,4 +1,4 @@
-import { API } from 'api';
+import { API, endPoint } from 'api';
 
 interface IAddLoan {
   date: string;
@@ -12,7 +12,7 @@ interface IAddLoan {
 }
 
 export const addLoan = async (values: IAddLoan): Promise<boolean> => {
-  const { data } = await API.post('/loans', values);
+  const { data } = await API.post(endPoint.LOANS, values);
 
   return !!data;
 };
