@@ -3,7 +3,7 @@ import { AppBar, Grid, TextField, Button } from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { useMutation } from 'react-query';
+import { QueryClient, useMutation } from 'react-query';
 import { loansAPI } from 'apis';
 import { useHistory } from 'react-router-dom';
 
@@ -45,14 +45,16 @@ const validationSchema = yup.object({
 
 const Newloan = (): ReactElement => {
   const classes = useStyles();
+  const queryClient = new QueryClient();
   let MyDate = new Date();
 
   let MyDateString = `${MyDate.getFullYear()}-${('0' + (MyDate.getMonth() + 1)).slice(-2)}-${(
     '0' + MyDate.getDate()
   ).slice(-2)}`;
 
-  // const { mutateAsync, isLoading } = useMutation(loansAPI.addLoan);
-  const mutation = useMutation(loansAPI.addLoan);
+  const mutation = useMutation(loansAPI.addLoan, {
+    onSuccess: () => queryClient.refetchQueries(),
+  });
 
   const history = useHistory();
 
@@ -68,9 +70,7 @@ const Newloan = (): ReactElement => {
       notes: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // alert(JSON.stringify({ ...values, date: new Date().toISOString() }, null, 2));
-      // axios.post('http://localhost:4000/loans', { ...values, date: new Date().toISOString() });
+    onSubmit: async (values) => {
       mutation.mutate({ ...values, date: new Date().toISOString() });
       history.push('/inprogress');
     },
