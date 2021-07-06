@@ -6,14 +6,27 @@ interface ISignin {
   email: string;
   password: string;
   confirmPassword: string;
+  history: any;
 }
 
-export const signin = async (values: ISignin) => {
-  console.log(values);
-
+export const signin = async ({
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword,
+  history,
+}: ISignin) => {
   try {
-    const { data } = await API.post(endPoint.SIGNIN, values);
-    return !!data;
+    const { data } = await API.post(endPoint.SIGNIN, {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    });
+    localStorage.setItem('profile', JSON.stringify({ ...data }));
+    history.push('/');
   } catch (error) {
     console.log(error);
   }
