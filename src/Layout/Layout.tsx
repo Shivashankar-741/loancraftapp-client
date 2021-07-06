@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { Button } from '@material-ui/core';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,8 +26,15 @@ import {
   AvatarSVG,
 } from '../icons';
 import { CssBaseline } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const Layout = (): ReactElement => {
+  const [user, setUser] = useState<string | null>(
+    JSON.parse(localStorage.getItem('profile') || '')
+  );
+  console.log(user);
+
+  const history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -37,6 +45,12 @@ const Layout = (): ReactElement => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    history.push('/');
+    setUser(null);
   };
 
   return (
@@ -64,11 +78,22 @@ const Layout = (): ReactElement => {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <h1 className={classes.heading}>LoanCraft</h1>
           </Link>
-          <IconButton className={classes.avatar}>
-            <Link to="/auth">
-              <AvatarSVG />
-            </Link>
-          </IconButton>
+          {user ? (
+            <Button
+              variant="contained"
+              // className={classes.logout}
+              color="secondary"
+              onClick={logout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <IconButton className={classes.avatar}>
+              <Link to="/auth">
+                <AvatarSVG />
+              </Link>
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
