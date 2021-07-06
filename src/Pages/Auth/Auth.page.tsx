@@ -5,8 +5,10 @@ import { useMutation } from 'react-query';
 import { FacebookIconSVG, GoogleIconSVG } from '../../icons';
 import { useStyles } from './Auth.style';
 import AuthInput from './AuthInput';
+import { useHistory } from 'react-router-dom';
 
 const Auth = (): ReactElement => {
+  const history = useHistory();
   const classes = useStyles();
 
   const signinMutation = useMutation(usersAPI.signin);
@@ -28,15 +30,15 @@ const Auth = (): ReactElement => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSignup) {
       // alert('please check your password');
       console.log(formData);
-      signupMutation.mutate(formData);
+      await signupMutation.mutateAsync({ ...formData, history });
     } else {
       console.log(formData);
-      signinMutation.mutate(formData);
+      await signinMutation.mutateAsync({ ...formData, history });
     }
   };
 
