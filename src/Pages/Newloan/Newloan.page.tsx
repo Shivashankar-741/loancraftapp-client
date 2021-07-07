@@ -44,6 +44,9 @@ const validationSchema = yup.object({
 });
 
 const Newloan = (): ReactElement => {
+  const user = JSON.parse(localStorage.getItem('profile')!);
+  console.log(user);
+
   const classes = useStyles();
   const queryClient = new QueryClient();
   let MyDate = new Date();
@@ -71,8 +74,13 @@ const Newloan = (): ReactElement => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      mutation.mutate({ ...values, date: new Date().toISOString() });
-      history.push('/inprogress');
+      if (user) {
+        mutation.mutate({ ...values, date: new Date().toISOString(), creator: user?.result?._id });
+        history.push('/inprogress');
+      } else {
+        alert('please sign up to continue');
+        history.push('/auth');
+      }
     },
   });
 

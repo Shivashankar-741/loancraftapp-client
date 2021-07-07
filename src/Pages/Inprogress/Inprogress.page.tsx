@@ -10,6 +10,7 @@ import { AppBar } from '@material-ui/core';
 import { useStyles } from './Inprogress.style';
 import { useQuery } from 'react-query';
 import { loansAPI } from 'apis';
+import { IAddLoan } from '../../apis/loans/addLoan.api';
 
 const rows = [
   {
@@ -71,17 +72,17 @@ const rows = [
 ];
 
 const Inprogress = (): ReactElement => {
+  const user = JSON.parse(localStorage.getItem('profile')!);
   const classes = useStyles();
-  const {
-    data: fetchLoans,
-    isLoading,
-    isError,
-  } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
-  console.log(fetchLoans);
-  console.log(isLoading);
-  console.log(isError);
+  const { data, isLoading, isError } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
 
+  if (isError) return <div>Something went wrong...</div>;
   if (isLoading) return <div>Loading...</div>;
+
+  const filterData = data?.data?.allLoans?.filter(
+    (loan: IAddLoan) => loan.creator === user?.result?._id
+  );
+  console.log(filterData);
 
   return (
     <div className={classes.bigContainer}>
@@ -104,7 +105,7 @@ const Inprogress = (): ReactElement => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {fetchLoans.map((el: string | number | any, idx: number) => (
+            {rows.map((el: string | number | any, idx: number) => (
               <TableRow key={idx + 1}>
                 <TableCell component="th" scope="row">
                   {idx + 1}

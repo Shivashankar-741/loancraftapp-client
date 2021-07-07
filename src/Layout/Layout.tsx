@@ -29,9 +29,7 @@ import { CssBaseline } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const Layout = (): ReactElement => {
-  const [user, setUser] = useState<string | null>(
-    JSON.parse(localStorage.getItem('profile') || '')
-  );
+  const [user, setUser] = useState<string | null>(JSON.parse(localStorage.getItem('profile')!));
   console.log(user);
 
   const history = useHistory();
@@ -80,6 +78,7 @@ const Layout = (): ReactElement => {
           </Link>
           {user ? (
             <Button
+              className={classes.avatar}
               variant="contained"
               // className={classes.logout}
               color="secondary"
@@ -94,6 +93,11 @@ const Layout = (): ReactElement => {
               </Link>
             </IconButton>
           )}
+          {/* <IconButton className={classes.avatar}>
+            <Link to="/auth">
+              <AvatarSVG />
+            </Link>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
       <Drawer

@@ -1,5 +1,4 @@
 import { API, endPoint } from 'api';
-
 interface ISignup {
   firstName: string;
   lastName: string;
