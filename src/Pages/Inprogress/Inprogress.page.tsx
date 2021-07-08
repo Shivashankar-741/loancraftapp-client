@@ -11,65 +11,8 @@ import { useStyles } from './Inprogress.style';
 import { useQuery } from 'react-query';
 import { loansAPI } from 'apis';
 import { IAddLoan } from '../../apis/loans/addLoan.api';
-
-const rows = [
-  {
-    sNo: 1,
-    loanID: 'LID1020',
-    name: 'Shiva shankar',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
-
-  {
-    sNo: 1,
-    loanID: 'LID1020',
-    name: 'Shiva shankar',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
-  {
-    sNo: 1,
-    loanID: 'LID1020',
-    name: 'Shiva shankar',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
-  {
-    sNo: 1,
-    loanID: 'LID1020',
-    name: 'Shiva shankar',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
-  {
-    sNo: 1,
-    loanID: 'LID1020',
-    name: 'Shiva shankar',
-    date: '11-05-2020',
-    amount: 50000,
-    interest: 1000,
-    pendingAmount: 6000,
-    fullDetails: 'details',
-    customize: 'customize',
-  },
-];
+import EditIcon from '@material-ui/icons/Edit';
+import { TransitionsModal } from './Inprogress.modal';
 
 const Inprogress = (): ReactElement => {
   const user = JSON.parse(localStorage.getItem('profile')!);
@@ -78,11 +21,28 @@ const Inprogress = (): ReactElement => {
 
   if (isError) return <div>Something went wrong...</div>;
   if (isLoading) return <div>Loading...</div>;
+  let filterData;
+  if (user?.result?._id) {
+    filterData = data?.data?.allLoans?.filter(
+      (loan: IAddLoan) => loan.creator === user?.result?._id
+    );
+  } else {
+    filterData = [];
+  }
 
-  const filterData = data?.data?.allLoans?.filter(
-    (loan: IAddLoan) => loan.creator === user?.result?._id
-  );
-  console.log(filterData);
+  interface IFilterLoan {
+    address: string;
+    alternativeMobileNumber: string;
+    amount: number;
+    createdAt: string;
+    creator: string;
+    firstName: string;
+    lastName: string;
+    loanID: string;
+    mobileNumber: string;
+    notes: string;
+    _id: string;
+  }
 
   return (
     <div className={classes.bigContainer}>
@@ -99,27 +59,31 @@ const Inprogress = (): ReactElement => {
               <TableCell>Date</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Interest</TableCell>
-              <TableCell>Pending Amoung</TableCell>
+              <TableCell>Pending Amount</TableCell>
               <TableCell>Full Details</TableCell>
               <TableCell>Customize</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((el: string | number | any, idx: number) => (
+            {filterData.map((loan: IFilterLoan, idx: number) => (
               <TableRow key={idx + 1}>
                 <TableCell component="th" scope="row">
                   {idx + 1}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {idx + 1}
+                  {loan.loanID}
                 </TableCell>
-                <TableCell>{el.firstName}</TableCell>
-                <TableCell>{el.date}</TableCell>
-                <TableCell>{el.address}</TableCell>
-                <TableCell>{el.interest}</TableCell>
-                <TableCell>{el.mobileNumber}</TableCell>
-                <TableCell>{el.amount}</TableCell>
-                <TableCell>{el.notes}</TableCell>
+                <TableCell>{loan.firstName + loan.lastName}</TableCell>
+                <TableCell>{loan.createdAt}</TableCell>
+                <TableCell>{loan.amount}</TableCell>
+                <TableCell>0</TableCell>
+                <TableCell>{0}</TableCell>
+                <TableCell>
+                  <TransitionsModal loanDetails={loan} />
+                </TableCell>
+                <TableCell>
+                  <EditIcon style={{ cursor: 'pointer' }} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
