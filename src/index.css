@@ -5,8 +5,8 @@
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/Gilroy Font/Gilroy-Regular.ttf');
+  font-family: "Gilroy";
+  src: url("./assets/Gilroy Font/Gilroy-Regular.ttf");
   font-weight: 600;
 }
 
