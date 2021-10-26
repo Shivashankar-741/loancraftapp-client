@@ -14,17 +14,17 @@ import { useStyles } from './Layout.style';
 import { Route, Switch, Link } from 'react-router-dom';
 import { routePages } from '../Pages';
 import {
-  DashboardSVG,
   InprogressSVG,
   NewloanSVG,
-  CompletedSVG,
-  PayinterestSVG,
-  InteresthistorySVG,
   LogoSVG,
   CollapseLeftSVG,
   CollapseRightSVG,
   AvatarSVG,
 } from '../icons';
+// DashboardSVG,
+// CompletedSVG,
+//   PayinterestSVG,
+//   InteresthistorySVG,
 import { CssBaseline } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 

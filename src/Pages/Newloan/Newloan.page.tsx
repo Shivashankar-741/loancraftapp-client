@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { AppBar, Grid, TextField, Button } from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
 import * as yup from 'yup';
