@@ -8,16 +8,36 @@ import Paper from '@material-ui/core/Paper';
 import './InProgress.style.css';
 import { AppBar } from '@material-ui/core';
 import { useStyles } from './Inprogress.style';
-import { useQuery } from 'react-query';
+import { QueryClient, useMutation, useQuery } from 'react-query';
 import { loansAPI } from 'apis';
 import { IAddLoan } from '../../apis/loans/addLoan.api';
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Delete';
 import { TransitionsModal } from './Inprogress.modal';
+
+interface IFilterLoan {
+  address: string;
+  alternativeMobileNumber: string;
+  amount: number;
+  createdAt: string;
+  creator: string;
+  firstName: string;
+  lastName: string;
+  loanID: string;
+  mobileNumber: string;
+  notes: string;
+  _id: string;
+}
 
 const Inprogress = (): ReactElement => {
   const user = JSON.parse(localStorage.getItem('profile')!);
   const classes = useStyles();
   const { data, isLoading, isError } = useQuery('getAllLoans', () => loansAPI.getAllLoans());
+
+  const queryClient = new QueryClient();
+
+  const mutation = useMutation(loansAPI.deleteLoan, {
+    onSuccess: () => queryClient.refetchQueries(['getAllLoans']),
+  });
 
   if (isError) return <div>Something went wrong...</div>;
   if (isLoading) return <div>Loading...</div>;
@@ -30,19 +50,9 @@ const Inprogress = (): ReactElement => {
     filterData = [];
   }
 
-  interface IFilterLoan {
-    address: string;
-    alternativeMobileNumber: string;
-    amount: number;
-    createdAt: string;
-    creator: string;
-    firstName: string;
-    lastName: string;
-    loanID: string;
-    mobileNumber: string;
-    notes: string;
-    _id: string;
-  }
+  const deleteLoan = async (id: string) => {
+    mutation.mutate(id);
+  };
 
   return (
     <div className={classes.bigContainer}>
@@ -61,7 +71,8 @@ const Inprogress = (): ReactElement => {
               <TableCell>Interest</TableCell>
               <TableCell>Pending Amount</TableCell>
               <TableCell>Full Details</TableCell>
-              <TableCell>Customize</TableCell>
+              <TableCell>delete</TableCell>
+              {/* <TableCell>Customize</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,7 +92,7 @@ const Inprogress = (): ReactElement => {
                 <TableCell>
                   <TransitionsModal loanDetails={loan} />
                 </TableCell>
-                <TableCell>
+                <TableCell onClick={() => deleteLoan(loan._id)}>
                   <EditIcon style={{ cursor: 'pointer' }} />
                 </TableCell>
               </TableRow>

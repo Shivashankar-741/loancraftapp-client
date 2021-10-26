@@ -122,14 +122,14 @@ const Layout = (): ReactElement => {
           </IconButton>
         </div>
         <List>
-          <Link to="/" className={classes.linkTag}>
+          {/* <Link to="/" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
                 <DashboardSVG />
               </ListItemIcon>
               <ListItemText className={classes.linkRoute}>Dashboard</ListItemText>
             </ListItem>
-          </Link>
+          </Link> */}
           <Link to="/newloan" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
@@ -146,6 +146,7 @@ const Layout = (): ReactElement => {
               <ListItemText className={classes.linkRoute}>In Progress</ListItemText>
             </ListItem>
           </Link>
+          {/*
           <Link to="/completed" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
@@ -154,7 +155,7 @@ const Layout = (): ReactElement => {
               <ListItemText className={classes.linkRoute}>Completed</ListItemText>
             </ListItem>
           </Link>
-          <Link to="/payinterest" className={classes.linkTag}>
+           <Link to="/payinterest" className={classes.linkTag}>
             <ListItem button>
               <ListItemIcon>
                 <PayinterestSVG />
@@ -169,7 +170,7 @@ const Layout = (): ReactElement => {
               </ListItemIcon>
               <ListItemText className={classes.linkRoute}>Interest History</ListItemText>
             </ListItem>
-          </Link>
+          </Link> */}
         </List>
       </Drawer>
       <main className={classes.content}>

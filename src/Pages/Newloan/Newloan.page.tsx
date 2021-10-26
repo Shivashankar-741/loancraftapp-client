@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { AppBar, Grid, TextField, Button } from '@material-ui/core';
 import { useStyles } from './Newloan.styles';
 import * as yup from 'yup';
@@ -45,7 +45,6 @@ const validationSchema = yup.object({
 
 const Newloan = (): ReactElement => {
   const user = JSON.parse(localStorage.getItem('profile')!);
-  console.log(user);
 
   const classes = useStyles();
   const queryClient = new QueryClient();
@@ -56,7 +55,7 @@ const Newloan = (): ReactElement => {
   ).slice(-2)}`;
 
   const mutation = useMutation(loansAPI.addLoan, {
-    onSuccess: () => queryClient.refetchQueries(),
+    onSuccess: () => queryClient.refetchQueries(['getAllLoans']),
   });
 
   const history = useHistory();

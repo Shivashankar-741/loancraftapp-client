@@ -26,6 +26,7 @@ export const signup = async ({
     });
     localStorage.setItem('profile', JSON.stringify({ ...data }));
     history.push('/');
+    window.location.reload();
   } catch (error) {
     console.log(error.message);
   }

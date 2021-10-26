@@ -37,7 +37,7 @@ interface ILoanDetails {
 }
 
 export const TransitionsModal = ({ loanDetails }: ILoanDetails) => {
-  console.log(loanDetails);
+  // console.log(loanDetails);
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
